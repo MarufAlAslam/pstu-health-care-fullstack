@@ -37,32 +37,17 @@
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                       
+                      
                       <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Add
+                        <a href="change-pass.php" class="nav-link text-dark">
+                            Change Password
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <li><a class="dropdown-item" href="add-doctor.html">Doctor</a></li>
-                          <li><a class="dropdown-item" href="add-patient.html">Patient</a></li>
-                        </ul>
                       </li>
                       <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Bookings
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <li><a class="dropdown-item" href="reg-check.php">Regular Checkup</a></li>
-                          <li><a class="dropdown-item" href="admits.php">Admits</a></li>
-                        </ul>
+                        <a href="patient-list.php" class="nav-link text-dark">Patient list</a>
                       </li>
                       <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Lists
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <li><a class="dropdown-item" href="dr-list.php">Doctor List</a></li>
-                          <li><a class="dropdown-item" href="patient-list.php">Patient List</a></li>
-                        </ul>
+                        <a href="pescription.php" class="nav-link text-dark">Write Pescription</a>
                       </li>
                     </ul>
                   </div>
@@ -77,7 +62,7 @@
         <div class="container">
             <div class="text-center">
                 <h3 class="fw-bold mb-4">
-                    Checkup Requests
+                    Patients
                 </h3>
             </div>
         <table class="table text-center">
@@ -95,10 +80,10 @@
                     Contact
                 </th>
                 <th>
-                    A_contact
+                    A_Contact
                 </th>
                 <th>
-                    Address
+                   Address
                 </th>
                 <th>
                     Problem
@@ -106,7 +91,7 @@
             </tr>
             <?php
             require('php/config.php');
-            $sql = "SELECT * FROM checkup";
+            $sql = "SELECT * FROM patient";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -135,15 +120,14 @@
                 echo $row["a_contact"];
                 echo '</td>';
 
-
                 echo '<td>';
                 echo $row["address"];
                 echo '</td>';
 
-
                 echo '<td>';
                 echo $row["problem"];
                 echo '</td>';
+
                 echo '</tr>';
             }
             } else {

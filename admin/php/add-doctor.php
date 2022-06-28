@@ -7,11 +7,12 @@ $specialist = $_POST['specialist'];
 $fromm = $_POST['fromm'];
 $too = $_POST['too'];
 
+
 if(isset($_POST['addDoctor'])){
     require('config.php');
 
-    $sql = "INSERT INTO doctor (name, contact, specialist_in,fromm, too)
-    VALUES ('$name', '$contact', '$specialist', '$fromm', $too)";
+    $sql = "INSERT INTO doctor (name, contact, specialist_in,fromm, too, pass)
+    VALUES ('$name', '$contact', '$specialist', '$fromm', '$too', 'abc')";
 
     if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";

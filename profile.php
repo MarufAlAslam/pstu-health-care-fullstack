@@ -1,3 +1,7 @@
+<?php
+ session_start();
+ require('php/config.php');
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -22,8 +26,8 @@
   <body>
     
 
-     <!-- topbar -->
-     <section class="topBar">
+    <!-- topbar -->
+    <section class="topBar">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
                 <div class="container-fluid">
@@ -80,51 +84,136 @@
 
 
 
-    <!-- login signup card -->
-    <section class="loginsignup py-4">
+    <!-- profile -->
+    <section class="profile py-4">
         <div class="container">
-            <div class="card border-0 shadow">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6 p-3">
-                            <div class="card p-3">
-                                <div class="text-center">
-                                    <h4 class="fw-bold">Login</h4>
-                                </div>
-                                <form action="php/login.php" method="post">
-                                    <input type="text" class="form-control my-3 py-2" placeholder="Username" name="username" id="" required>
-                                    <input type="password" class="form-control my-3 py-2" placeholder="Password" name="password" id="" required>
-                                    <button class="btn btn-success d-block ms-auto">Login</button>
-                                </form>
+            <div class="card border-0 shadow rounded">
+                <div class="card-body p-5">
+                    <div class="text-center">
+                        <img src="img/avatar.svg" class="img-fluid avatar mb-4" alt="">
+                        <h2 class="fw-bold">
+                            Welcome <span class="text-success"><?php echo $_SESSION['login_user'];?></span>
+                        </h2>
+
+                        <hr>
+                        <div class="pescription">
+                            <div class="text-center">
+                                <h4 class="fw-bold">
+                                    This is Your Pescription
+                                </h4>
                             </div>
-                        </div>
-                        <div class="col-md-6 p-3">
-                            <div class="card p-3">
-                                <div class="text-center">
-                                    <h4 class="fw-bold">Register</h4>
-                                </div>
-                                <form action="php/register.php" method="post">
-                                    <input type="text" class="form-control my-3 py-2" name="username" placeholder="Username" name="" id="" required>
-                                    <input type="email" class="form-control my-3 py-2" name="email" placeholder="Email" name="" id="" required>
-                                    <input type="password" class="form-control my-3 py-2" name="password" placeholder="Password" name="" id="" required>
+                            <div class="text-end">
+                            <button class="btn btn-success d-block ms-auto text-success bg-transparent dwnldbtn" name="Download">Download Pescription</button>
+                            </div>
+                            <div class="card pescriptionCard text-start w-75 mx-auto border-0 shadow mt-4">
+                                <div class="card-body p-5" id="element-to-print">
+                                     <p>
+                                    <?php
+                                        echo "Date: " . date("d/m/Y") . "<br>";
+                                        echo "" . date("l");
+                                        ?>
+                                    </p>
+                                    <p class="text-dark mb-0">
+                                    Patient Name: <?php echo $_SESSION['login_user'];?>
+                                    </p>
+                                    <p class="text-dark mb-0">
+                                    Patient Age: 
+                                    <?php
+                                        $name = $_SESSION['login_user'];
+                                         $sql = "SELECT age FROM patient where name = '$name'";
+                                         $result = $conn->query($sql);
+                                         
+                                         if ($result->num_rows > 0) {
+                                           // output data of each row
+                                           while($row = $result->fetch_assoc()) {
+                                             echo $row["age"];
+                                           }
+                                         } else {
+                                           echo "0 results";
+                                         }
+                                        ?>
+                                    </p>
 
-
-
-
-
+                                    <p class="text-dark">
+                                    Patient Gender: 
+                                    <?php
+                                    echo '<script>var name="';
+                                    echo $_SESSION['login_user'];
+                                    echo '"</script>';
+                                        $name = $_SESSION['login_user'];
+                                         $sql = "SELECT gender FROM patient where name = '$name'";
+                                         $result = $conn->query($sql);
+                                         
+                                         if ($result->num_rows > 0) {
+                                           // output data of each row
+                                           while($row = $result->fetch_assoc()) {
+                                             echo $row["gender"];
+                                           }
+                                         } else {
+                                           echo "0 results";
+                                         }
+                                        ?>
+                                    </p>
                                     
-                                    <input type="text" class="form-control my-3 py-2" name="age" placeholder="Age" id="" required>
-                                    <select name="gender" class="form-control py-2 my-3" id="">
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                    </select>
-                                    <input type="text" class="form-control my-3 py-2" name="contact" placeholder="Contact" id="" required>
-                                    <input type="text" class="form-control my-3 py-2" name="aContact" placeholder="Additional Contact" id="" required>
-                                    <input type="text" class="form-control my-3 py-2" name="address" placeholder="Address" id="" required>
-                                    <textarea name="problem" class="form-control my-3" id="" cols="30" rows="5" placeholder="Problem"></textarea>
-                                   
-                                    <button class="btn btn-success d-block ms-auto" name="register">Register</button>
-                                </form>
+                                    <p class="text-danger">
+                                        Problem: 
+
+                                        <?php
+                                        $name = $_SESSION['login_user'];
+                                         $sql = "SELECT problem FROM patient where name = '$name'";
+                                         $result = $conn->query($sql);
+                                         
+                                         if ($result->num_rows > 0) {
+                                           // output data of each row
+                                           while($row = $result->fetch_assoc()) {
+                                             echo $row["problem"];
+                                           }
+                                         } else {
+                                           echo "0 results";
+                                         }
+                                        ?>
+                                    </p>
+
+
+                                    <pre class="text-dark fw-bold">Px: 
+<?php
+                                        $name = $_SESSION['login_user'];
+                                         $sql = "SELECT pescription FROM pescription where name = '$name'";
+                                         $result = $conn->query($sql);
+                                         if ($result->num_rows > 0) {
+                                           // output data of each row
+                                           while($row = $result->fetch_assoc()) {echo $row["pescription"];
+                                           }
+                                         } else {
+                                           echo "0 results";
+                                         }
+                                        ?>
+                                    </pre>
+
+                                    <div class="text-end">
+                                    <p class="text-success mb-0">
+
+                                        <?php
+                                        $name = $_SESSION['login_user'];
+                                         $sql = "SELECT dr_name FROM pescription where name = '$name'";
+                                         $result = $conn->query($sql);
+                                         
+                                         if ($result->num_rows > 0) {
+                                           // output data of each row
+                                           while($row = $result->fetch_assoc()) {
+                                             echo $row["dr_name"];
+                                           }
+                                         } else {
+                                           echo "0 results";
+                                         }
+                                        ?>
+                                    </p>
+                                    <div class="line ms-auto me-0"></div>
+                                    <p class="fw-bold mb-0">
+                                        Dr. Sign
+                                    </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -132,9 +221,7 @@
             </div>
         </div>
     </section>
-    <!-- login signup card -->
-    
-
+    <!-- profile -->
 
     <!-- footer  -->
     <section class="footer py-4">
@@ -228,7 +315,6 @@
         </div>
     </section>
     <!-- footer  -->
-    
 
 
     <!-- jQuery -->
@@ -237,7 +323,11 @@
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- report generate -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
     <!-- main js -->
     <script src="js/main.js"></script>
+
   </body>
 </html>

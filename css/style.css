@@ -169,3 +169,13 @@ textarea{
 .avatar{
 	height: 150px;
 }
+.line.ms-auto.me-0 {
+    margin-right: 0 !important;
+    margin-top: 5px !important;
+    height: 2px;
+    margin-bottom: 5px !important;
+}
+button.btn.btn-success.d-block.ms-auto.text-success.bg-transparent {
+    border: none;
+    background: transparent !important;
+}

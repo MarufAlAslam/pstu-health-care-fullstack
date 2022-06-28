@@ -28,7 +28,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
                 <div class="container-fluid">
-                  <a class="navbar-brand" href="index.html">
+                  <a class="navbar-brand" href="panel.php">
                     <img src="../img/logo.png" class="img-fluid logo" alt="">
                   </a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

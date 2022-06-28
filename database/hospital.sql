@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2022 at 11:37 PM
+-- Generation Time: Jun 28, 2022 at 11:54 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -101,18 +101,22 @@ CREATE TABLE `doctor` (
   `contact` varchar(100) NOT NULL,
   `specialist_in` varchar(100) NOT NULL,
   `fromm` varchar(100) NOT NULL,
-  `too` varchar(100) NOT NULL
+  `too` varchar(100) NOT NULL,
+  `pass` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `doctor`
 --
 
-INSERT INTO `doctor` (`id`, `name`, `contact`, `specialist_in`, `fromm`, `too`) VALUES
-(1, 'ahsan', '12345678', 'XYZ', '10.00', '2.00'),
-(2, 'Test', '12345678', 'Everything', '10.00 AM', '2.00 PM'),
-(3, 'New', '12345678', 'Nothing', '1.00', '3.00'),
-(4, 'New Doctor', '12345', 'Everything', '10.00', '5.00');
+INSERT INTO `doctor` (`id`, `name`, `contact`, `specialist_in`, `fromm`, `too`, `pass`) VALUES
+(1, 'ahsan', '12345678', 'XYZ', '10.00', '2.00', '123'),
+(2, 'Test', '12345678', 'Everything', '10.00 AM', '2.00 PM', ''),
+(3, 'New', '12345678', 'Nothing', '1.00', '3.00', ''),
+(4, 'New Doctor', '12345', 'Everything', '10.00', '5.00', ''),
+(5, 'new1', '123468', 'Test', '12', '4', ''),
+(6, 'new2', '1246', 'Test1', '9', '5', ''),
+(7, '123', '123', '123', '1', '2', 'abc');
 
 -- --------------------------------------------------------
 
@@ -137,7 +141,33 @@ CREATE TABLE `patient` (
 
 INSERT INTO `patient` (`id`, `name`, `age`, `gender`, `contact`, `a_contact`, `address`, `problem`) VALUES
 (1, 'Test', '22', 'male', '12345678', '987654321`', 'Dhaka', 'Test'),
-(2, 'No Name', '100', 'other', '919191', '83828', 'Uganda', 'Everything is fine');
+(2, 'No Name', '100', 'other', '919191', '83828', 'Uganda', 'Everything is fine'),
+(3, 'new patient', '', '', '', '', '', ''),
+(4, 'overall', '90', 'female', '12345678', '98765432', 'Dhaka', 'All good');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pescription`
+--
+
+CREATE TABLE `pescription` (
+  `id` int(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `pescription` varchar(1000) NOT NULL,
+  `dr_name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `pescription`
+--
+
+INSERT INTO `pescription` (`id`, `name`, `pescription`, `dr_name`) VALUES
+(1, 'Test', 'test', ''),
+(2, 'Test', 'tt', ''),
+(3, 'No Name', 'this is your pescription', ''),
+(4, 'Test', 'new', ''),
+(5, 'overall', 'This is the final testing pescription\r\n\r\n1. tablet\r\n2. tablet\r\n3. syrup', '123');
 
 -- --------------------------------------------------------
 
@@ -163,7 +193,9 @@ INSERT INTO `register` (`id`, `username`, `email`, `password`) VALUES
 (4, 'John', 'Doe', 'john@example.com'),
 (5, 'root', 'sumon@gmail.com', ''),
 (6, 'sumon', 'sumon@gmail.com', '111'),
-(7, 'admin', 'admin@admin.com', 'admin');
+(7, 'admin', 'admin@admin.com', 'admin'),
+(8, 'new patient', 'patient@patient.com', 'patient'),
+(9, 'overall', 'sumon@gmail.com', '1234');
 
 --
 -- Indexes for dumped tables
@@ -194,6 +226,12 @@ ALTER TABLE `patient`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `pescription`
+--
+ALTER TABLE `pescription`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `register`
 --
 ALTER TABLE `register`
@@ -219,19 +257,25 @@ ALTER TABLE `checkup`
 -- AUTO_INCREMENT for table `doctor`
 --
 ALTER TABLE `doctor`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `pescription`
+--
+ALTER TABLE `pescription`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `register`
 --
 ALTER TABLE `register`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
